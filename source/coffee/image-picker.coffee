@@ -123,6 +123,9 @@ class ImagePickerOption
   has_image: () ->
     @option.data("img-src")?
 
+  has_fullsize: () ->
+    @option.data("img-fullsize")?
+
   is_blank: () ->
     !(@value()? && @value() != "")
 
@@ -157,10 +160,15 @@ class ImagePickerOption
     @node = jQuery("<li/>")
     image = jQuery("<img class='image_picker_image'/>")
     image.attr("src", @option.data("img-src"))
+    fullsize = jQuery("<div class='fullsize'/>")
+    fullimg = jQuery("<img/>")
+    fullimg.attr("src", @option.data("img-fullsize"))
+    fullsize.append(fullimg)
     thumbnail = jQuery("<div class='thumbnail'>")
     thumbnail.click {option: this}, (event) ->
       event.data.option.clicked()
     thumbnail.append(image)
     thumbnail.append(jQuery("<p/>").html(@label())) if @opts.show_label
+    thumbnail.append(fullsize) if @has_fullsize()
     @node.append( thumbnail )
     @node
