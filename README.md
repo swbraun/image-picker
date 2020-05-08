@@ -9,3 +9,5 @@ Just download the latest build and add the corresponding .js and .css to your as
 # Examples and doc
 
 Visit http://rvera.github.com/image-picker
+
+This is for the PyCharm Test
